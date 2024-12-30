@@ -70,18 +70,25 @@ namespace ResturantBill
                 comboBox.SelectedIndex = -1;
             }
         }
+        private decimal taxRate = 0.0825m;
         private void UpdateBill()
         {
             decimal subtotal = 0;
 
+            // Calculate the subtotal
             foreach (var item in selectedItems)
             {
                 subtotal += menu[item];
             }
 
-            labelSubtotal.Text = $"Subtotal: ${subtotal:0.00}";
-            labelTax.Text = $"Tax: ${(subtotal * 0.0825m):0.00}";
-            labelTotal.Text = $"Total: ${(subtotal * 1.0825m):0.00}";
+            // Calculate tax and total
+            decimal tax = subtotal * taxRate;
+            decimal total = subtotal + tax;
+
+            // Update labels
+            labelSubtotal.Text = $" ${subtotal:0.00}";
+            labelTax.Text = $"${tax:0.00}";
+            labelTotal.Text = $"${total:0.00}";
         }
         private void ClearBill_Click(object sender, EventArgs e)
         {
