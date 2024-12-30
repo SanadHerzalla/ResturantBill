@@ -75,17 +75,14 @@ namespace ResturantBill
         {
             decimal subtotal = 0;
 
-            // Calculate the subtotal
             foreach (var item in selectedItems)
             {
                 subtotal += menu[item];
             }
 
-            // Calculate tax and total
             decimal tax = subtotal * taxRate;
             decimal total = subtotal + tax;
 
-            // Update labels
             labelSubtotal.Text = $" ${subtotal:0.00}";
             labelTax.Text = $"${tax:0.00}";
             labelTotal.Text = $"${total:0.00}";
